@@ -10,6 +10,6 @@ $ffxiv = ffxivLodestoneAPI::GetInstance();
 $result = $ffxiv->SearchCharacterList('Isabel Undine');
 
 foreach($result as $res) {
-  $ffxiv->GetCharacterData ( $res->CharacterID);
+  $ffxiv->GetCharacterData ( $res->CharacterID );
 }
 ?>
