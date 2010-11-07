@@ -7,9 +7,9 @@ include_once('ffxiv-lodestone-api.php');
 
 $ffxiv = ffxivLodestoneAPI::GetInstance();
 
-$result = $ffxiv->SearchCharacterList('Undine');
+$result = $ffxiv->SearchCharacterList('Isabel Undine');
 
-echo "<pre>";
-print_r($result);
-echo "</pre>";
+foreach($result as $res) {
+  $ffxiv->GetCharacterData ( $res->CharacterID);
+}
 ?>

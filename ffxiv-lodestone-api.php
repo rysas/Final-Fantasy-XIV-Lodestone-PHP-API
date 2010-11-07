@@ -98,25 +98,21 @@ class ffxivLodestoneAPI {
     // Loop through each character in list
     foreach ( $CharListObj->find('table tr') as $Char ) {
       
+      $Result = new StdClass;
+      
       // Get Character ID and setup Results array.
-      $CharID = $Char->find ('a[href^=/rc/character/top]');
-      $CharName = $CharID[0]->plaintext;
-      $CharID = substr ( $CharID[0]->href, 25, strlen ($CharID[0]->href) );
+      $Result->CharacterID = $Char->find ('a[href^=/rc/character/top]');
+      $Result->CharName = $Result->CharacterID[0]->plaintext;
+      $Result->CharacterID = substr ( $Result->CharacterID[0]->href, 25, strlen ($Result->CharacterID[0]->href) );
       
       // Start getting other data.
-      $CharImage = $Char->find ('img.character-icon');
-      $CharImage = $CharImage[0]->src;
+      $Result->CharacterImage = $Char->find ('img.character-icon');
+      $Result->CharacterImage = $Result->CharacterImage[0]->src;
       
-      $CharMainSkill = $Char->parent()->parent()->parent()->children(1);
-      $CharWorld = $Char->parent()->parent()->parent()->children(2);
-      
-      $Results[] = array (
-        'CharacterID' => $CharID,
-        'CharacterName' => $CharName,
-        'CharacterIcon' => $CharImage,
-        'CharacterMainSkill' => $CharMainSkill->plaintext,
-        'CharacterWorld' => $CharWorld->plaintext
-      );
+      $Result->CharacterMainSkill = $Char->parent()->parent()->parent()->children(1);
+      $Result->CharacterWorld = $Char->parent()->parent()->parent()->children(2);
+
+      $Results[] = $Result;
     }
     
     return $Results;    
@@ -124,7 +120,9 @@ class ffxivLodestoneAPI {
 
   public function GetCharacterData ( $CharacterID ) {
     
+    $html = $this->GetHTMLObject ( '/rc/character/status?cicuid=' . $CharacterID );
     
+    echo $html;
   }
 }
 ?>
