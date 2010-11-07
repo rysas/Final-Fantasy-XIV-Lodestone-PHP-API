@@ -73,8 +73,6 @@ class ffxivLodestoneAPI {
     $context = array(
       'http' => array (
         'header' => 'Accept-Language: en-us,en;q=0.5\r\nAccept-Charset: utf-8;q=0.5\r\n',
-        // 'Accept-Language' => 'en-us,en;q=0.5',
-        // 'Accept-Charset' => 'utf-8;q=0.5',
         'user_agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.08) Gecko/20100914 Firefox/3.6.10'
       )
     );
